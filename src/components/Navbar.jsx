@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lotus, Star, Youtube, Calendar } from 'lucide-react';
+import { Flower2, Star, Youtube, Calendar } from 'lucide-react';
 
 export default function Navbar() {
   return (
@@ -9,7 +9,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <div className="relative">
               <span className="absolute -inset-2 bg-gradient-to-tr from-fuchsia-400/50 via-rose-400/40 to-amber-300/40 blur-xl rounded-full" />
-              <Lotus className="relative h-7 w-7 text-fuchsia-500" />
+              <Flower2 className="relative h-7 w-7 text-fuchsia-500" />
             </div>
             <span className="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">BhaktiFlow</span>
           </div>

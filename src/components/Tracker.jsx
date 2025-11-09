@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react';
-import { CheckCircle2, Beads, BookOpen, HeartHandshake, Users } from 'lucide-react';
+import { CheckCircle2, Target, BookOpen, Heart, Users } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const activities = [
-  { key: 'japa', label: 'Japa Rounds', icon: Beads },
+  { key: 'japa', label: 'Japa Rounds', icon: Target },
   { key: 'reading', label: 'Scripture Reading', icon: BookOpen },
-  { key: 'seva', label: 'Seva / Service', icon: HeartHandshake },
+  { key: 'seva', label: 'Seva / Service', icon: Heart },
   { key: 'satsang', label: 'Satsang / Kirtan', icon: Users },
 ];
 
