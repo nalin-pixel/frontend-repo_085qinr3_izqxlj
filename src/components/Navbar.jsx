@@ -1,0 +1,25 @@
+import React from 'react';
+import { Lotus, Star, Youtube, Calendar } from 'lucide-react';
+
+export default function Navbar() {
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/40 bg-white/70 dark:bg-zinc-900/70 border-b border-white/20 dark:border-zinc-800/60">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <span className="absolute -inset-2 bg-gradient-to-tr from-fuchsia-400/50 via-rose-400/40 to-amber-300/40 blur-xl rounded-full" />
+              <Lotus className="relative h-7 w-7 text-fuchsia-500" />
+            </div>
+            <span className="font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">BhaktiFlow</span>
+          </div>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-zinc-700 dark:text-zinc-300">
+            <a href="#darshan" className="hover:text-fuchsia-500 transition-colors inline-flex items-center gap-2"><Youtube className="h-4 w-4"/>Darshan</a>
+            <a href="#tracker" className="hover:text-fuchsia-500 transition-colors inline-flex items-center gap-2"><Calendar className="h-4 w-4"/>Daily Tracker</a>
+            <a href="#about" className="hover:text-fuchsia-500 transition-colors inline-flex items-center gap-2"><Star className="h-4 w-4"/>About</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+}
