@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Darshan from './components/Darshan';
 import Tracker from './components/Tracker';
 import About from './components/About';
+import Affirmations from './components/Affirmations';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Hero />
         <Darshan />
         <Tracker />
+        <Affirmations />
         <About />
       </main>
       <footer className="py-10 border-t border-black/5">

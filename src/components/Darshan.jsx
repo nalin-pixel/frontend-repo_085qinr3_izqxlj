@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Youtube } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { Youtube, Images } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 function extractYouTubeId(url) {
@@ -12,7 +12,6 @@ function extractYouTubeId(url) {
     if (u.searchParams.get('v')) {
       return u.searchParams.get('v');
     }
-    // Embed link
     const parts = u.pathname.split('/');
     const idx = parts.findIndex((p) => p === 'embed');
     if (idx !== -1 && parts[idx + 1]) return parts[idx + 1];
@@ -22,9 +21,21 @@ function extractYouTubeId(url) {
   return '';
 }
 
+const presets = [
+  { name: 'Mayapur TV', url: 'https://www.youtube.com/watch?v=jfKfPfyJRdk' },
+  { name: 'Vrindavan', url: 'https://www.youtube.com/watch?v=ysz5S6PUM-U' },
+  { name: 'Mumbai Temple', url: 'https://www.youtube.com/watch?v=5qap5aO4i9A' },
+  { name: 'Jagannath Puri', url: 'https://www.youtube.com/watch?v=DWcJFNfaw9c' },
+];
+
 export default function Darshan() {
-  const [url, setUrl] = useState('https://www.youtube.com/watch?v=ysz5S6PUM-U');
-  const videoId = extractYouTubeId(url) || 'ysz5S6PUM-U';
+  const [url, setUrl] = useState(() => localStorage.getItem('darshan-url') || presets[0].url);
+  const videoId = useMemo(() => extractYouTubeId(url) || 'ysz5S6PUM-U', [url]);
+
+  function setPreset(u) {
+    setUrl(u);
+    localStorage.setItem('darshan-url', u);
+  }
 
   return (
     <section id="darshan" className="py-20 sm:py-28 bg-gradient-to-b from-white to-zinc-50 dark:from-zinc-950 dark:to-zinc-900">
@@ -40,7 +51,7 @@ export default function Darshan() {
             <Youtube className="h-6 w-6" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Live Darshan</h2>
-          <p className="mt-3 text-zinc-600 dark:text-zinc-400">Tune into temple streams or add your favorite live kirtan and darshan videos.</p>
+          <p className="mt-3 text-zinc-600 dark:text-zinc-400">Quickly switch between popular temple streams or paste any link.</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8 items-start">
@@ -78,9 +89,22 @@ export default function Darshan() {
               className="mt-2 w-full rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-4 py-3 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-fuchsia-500/60"
             />
             <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">Works with full links, short youtu.be links, or embed codes.</p>
-            <div className="mt-6 space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
-              <p>Tip: Add your temple's live stream URL and keep it pinned for darshan on the go.</p>
-              <p className="text-zinc-500">Default sample video is shown if the link is empty or invalid.</p>
+
+            <div className="mt-6">
+              <div className="flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-3">
+                <Images className="h-4 w-4" /> Temple streams
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                {presets.map((p) => (
+                  <button
+                    key={p.name}
+                    onClick={() => setPreset(p.url)}
+                    className={`rounded-xl px-3 py-2 text-sm ring-1 ring-black/5 hover:bg-zinc-50 dark:hover:bg-zinc-800 ${url === p.url ? 'bg-zinc-100 dark:bg-zinc-800' : 'bg-white/60 dark:bg-zinc-900/50'}`}
+                  >
+                    {p.name}
+                  </button>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
